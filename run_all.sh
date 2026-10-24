@@ -26,6 +26,8 @@ echo "== 3 train";               $PY scripts/train_diagnosis.py $DATA --backbone
 echo "== 3b degraded logits";    $PY scripts/predict_conditions.py $DATA --runs $R --quality $A/quality_thresholds.json
 echo "== 4 calibrate";           $PY scripts/calibrate.py --runs $R --results $O
 echo "== 5 E1 gap";              $PY scripts/e1_gap.py --runs $R --results $O
+echo "== 5b metrics (ROC, AUC, Brier, ...)"; $PY scripts/eval_metrics.py --runs $R --results $O
+echo "== 5c compare models";   $PY scripts/compare_models.py --runs $R --results $O
 echo "== 6 E2/E3 policy";        $PY scripts/run_policy.py --runs $R --artifacts $A --results $O
 echo "== 7 E4/E5 ablations";     $PY scripts/ablate.py --runs $R --artifacts $A --results $O
 echo "== 8 report";              $PY scripts/report.py --results $O --backbone $(echo $BACKBONES | cut -d' ' -f1)

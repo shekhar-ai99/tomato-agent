@@ -35,10 +35,10 @@ T0 = time.time()
 # Rough seconds per step on a free T4 (guesses from one pilot run; per-run steps are multiplied by the number of runs).
 TYPICAL = {"GPU": 10, "Drive": 1, "Tests": 15, "Download": 200,
            "1 prepare data": 30, "1 dedup": 240, "2 quality thresholds": 420, "3 train": 1300 * N_RUNS,
-           "3b degraded logits": 300 * N_RUNS, "4 calibrate": 10, "5 E1 gap": 10, "6 E2/E3 policy": 30,
+           "3b degraded logits": 300 * N_RUNS, "4 calibrate": 10, "5 E1 gap": 10, "5b metrics (ROC, AUC, Brier, ...)": 60, "5c compare models": 30, "6 E2/E3 policy": 30,
            "7 E4/E5 ablations": 30, "8 report": 20, "export for phone": 60, "Save": 30, "Push": 60}
 STAGES = ["1 prepare data", "1 dedup", "2 quality thresholds", "3 train", "3b degraded logits", "4 calibrate",
-          "5 E1 gap", "6 E2/E3 policy", "7 E4/E5 ablations", "8 report", "export for phone"]
+          "5 E1 gap", "5b metrics (ROC, AUC, Brier, ...)", "5c compare models", "6 E2/E3 policy", "7 E4/E5 ablations", "8 report", "export for phone"]
 
 
 def fmt(sec):

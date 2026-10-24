@@ -37,6 +37,8 @@ Step "3 train"              { & $Python scripts/train_diagnosis.py @Data --backb
 Step "3b degraded logits"   { & $Python scripts/predict_conditions.py @Data --runs $R --quality "$A/quality_thresholds.json" }
 Step "4 calibrate"          { & $Python scripts/calibrate.py --runs $R --results $O }
 Step "5 E1 gap"             { & $Python scripts/e1_gap.py --runs $R --results $O }
+Step "5b metrics"           { & $Python scripts/eval_metrics.py --runs $R --results $O }
+Step "5c compare models"    { & $Python scripts/compare_models.py --runs $R --results $O }
 Step "6 E2/E3 policy"       { & $Python scripts/run_policy.py --runs $R --artifacts $A --results $O }
 Step "7 E4/E5 ablations"    { & $Python scripts/ablate.py --runs $R --artifacts $A --results $O }
 Step "8 report"             { & $Python scripts/report.py --results $O --backbone $Backbones[0] }

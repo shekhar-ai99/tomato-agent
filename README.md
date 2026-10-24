@@ -55,12 +55,16 @@ To run fewer models while you test on real data:
 | 3b | `predict_conditions.py` | `cond_<set>.npz`: logits on clean and degraded copies | 6, 7 |
 | 4 | `calibrate.py` | `calibration.json` per run (T_pv and T_pd), `results/calibration.csv`, `reliability_bins.csv` | 6, 7, Fig. 4 |
 | 5 | `e1_gap.py` (E1, RQ1) | `results/e1_gap.md`, per-class recall, confusion matrices + the **reframe gate** | Table 5.1, Fig. 2 |
+| 5b | `eval_metrics.py` | `results/metrics/`: ROC-AUC (one-vs-rest), PR-AUC, Brier, ECE, NLL, per-class precision/recall/F1, confusion matrices, 95% bootstrap CIs, `fig5-7` | Tables, Figs. |
+| 5c | `compare_models.py` | `results/metrics/model_comparison.md`, paired tests between backbones, `fig8-10` (comparison bars, macro ROC overlay, reliability) | Model comparison |
 | 6 | `run_policy.py` (E2, E3; RQ2, RQ3) | `results/thresholds.json`, `e2_*_raw.csv`, `e3_*_raw.csv`, `curves_raw.csv` | Tables 5.2, 5.3, Fig. 3 |
 | 7 | `ablate.py` (E4, E5; RQ4) | `results/e4_ablation_raw.csv`, `e5_cost_workload_raw.csv` | Table 5.4 |
 | 8 | `report.py` | `results/paper_tables.md`, `stats_tests.csv`, `fig1b_gap.png`, `fig2-4*.png` | Section 5 |
 | + | `export_mobile.py` | `export/model_int8.onnx`, `patrasathi_config.json`, `export_report.json` (size, latency) | Section 5.5, phone |
 
 Every stage reads the previous stage's files, so any table can be regenerated from the stored splits and seeds. Interrupted training resumes (finished runs are skipped).
+
+After training on Colab, `%run scripts/colab_eval.py` runs calibration, 5b, 5c and E1 in one go, shows the figures and downloads `tomato_eval.zip` (figures included, for downloading only; never commit it).
 
 ### How the experiments are set up
 
