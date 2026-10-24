@@ -3,8 +3,9 @@
 Stage 6 / E2 + E3: run the agent policy.
 
 For every seed and backbone:
-  * choose (tau_accept, tau_defer) with the cost rule on the selection set (default: PlantVillage
-    val with mixed degradations, pessimistic retakes), for each cost ratio and temperature variant;
+  * choose (tau_accept, tau_defer) with the cost rule on a selection set with mixed degradations and pessimistic
+    retakes, for each cost ratio and temperature variant. Default: the lab temperature (pv) is selected on
+    PlantVillage val, the field temperature (pd) on the PlantDoc calibration hold-out (never on a test set);
   * E2 (RQ2): static accuracy vs quality check + retake, per degradation (no deferral);
   * E3 (RQ3): B1 static, B2 ensemble, B3 threshold only, and the full pipeline, on clean and mixed
     test conditions: accuracy, accuracy at 90/80/70% coverage, ECE, AURC, and the cost-rule
@@ -42,7 +43,8 @@ def main():
     ap.add_argument("--c-ret", type=float, default=0.1, help="cost of one retake, in units of C_def")
     ap.add_argument("--retake-budget", type=int, default=1)
     ap.add_argument("--temperatures", nargs="+", default=["pv", "pd"], help="pv = PlantVillage-fitted, pd = field-fitted")
-    ap.add_argument("--select-set", default="pv_val", choices=["pv_val", "pd_calib"])
+    ap.add_argument("--select-set", default=None, choices=["pv_val", "pd_calib"],
+                    help="use this one set for every temperature variant (old behaviour); default: pv->pv_val, pd->pd_calib")
     ap.add_argument("--select-mode", default="pess", choices=MODES)
     ap.add_argument("--eval-sets", nargs="+", default=["pv_test", "pd_test"])
     ap.add_argument("--e3-scenarios", nargs="+", default=["none", "mixed"])
@@ -61,18 +63,23 @@ def main():
     for d in dirs:
         by_seed[int(d.name[4:])].append(d)
     main_bb = args.main_backbone or sorted({d.parent.name for d in dirs})[0]
+    select_for = {"pv": "pv_val", "pd": "pd_calib", "none": "pv_val"}   # which hold-out picks the thresholds, per temperature
+    if args.select_set:
+        select_for = {t: args.select_set for t in select_for}
 
     e2, e3, curves, chosen = [], [], [], {}
     for seed, rds in sorted(by_seed.items()):
         for T in args.temperatures:
-            sel = {d.parent.name: SetData(d, args.select_set, qdir, th, T) for d in rds}
+            sel_set = select_for[T]
+            sel = {d.parent.name: SetData(d, sel_set, qdir, th, T) for d in rds}
             ev = {s: {d.parent.name: SetData(d, s, qdir, th, T) for d in rds} for s in args.eval_sets}
             for bb in sel:
                 for c in costs:
-                    cfg, m = choose_gate(sel[bb], c, args.select_set, level, R, True, args.select_mode)
-                    cfg0, _ = choose_gate(sel[bb], c, args.select_set, level, 0, False, args.select_mode)
+                    cfg, m = choose_gate(sel[bb], c, sel_set, level, R, True, args.select_mode)
+                    cfg0, _ = choose_gate(sel[bb], c, sel_set, level, 0, False, args.select_mode)
                     chosen[f"{bb}/seed{seed}/T{T}/{c.label}"] = {
-                        "proposed": cfg.to_dict(), "threshold_only": cfg0.to_dict(), "selection_metrics": m}
+                        "proposed": cfg.to_dict(), "threshold_only": cfg0.to_dict(), "selection_metrics": m,
+                        "selected_on": sel_set}
                     for s in args.eval_sets:
                         data = ev[s][bb]
                         for scen in args.e3_scenarios:
@@ -119,7 +126,7 @@ def main():
                             "note": "median over seeds; used by the demo app and exported to the phone"}
     out = Path(args.results)
     write_json(out / "thresholds.json", {"recommended": rec, "per_run": chosen,
-                                         "selected_on": args.select_set, "select_mode": args.select_mode,
+                                         "selected_on": {t: select_for[t] for t in args.temperatures}, "select_mode": args.select_mode,
                                          "c_ret": args.c_ret, "quality_level": level})
     write_csv(out / "e2_quality_retake_raw.csv", e2)
     write_csv(out / "e3_reliability_raw.csv", e3)

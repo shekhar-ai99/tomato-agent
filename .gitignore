@@ -24,3 +24,5 @@ venv/
 mlruns/
 .gradio/
 tomato_*.zip
+tomato_results/
+tomato_eval/

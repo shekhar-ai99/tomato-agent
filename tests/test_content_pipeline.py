@@ -111,3 +111,19 @@ def test_graph_pipeline_same_flow_as_plain_pipeline(tmp_path):
         out.append((s1.action, s1.reason, bool(s1.message), s2.action, s2.reason, case.retakes_used, case.closed))
         assert s2.case_file and json.loads(open(s2.case_file, encoding="utf-8").read())["reason"] == "retakes_exhausted"
     assert out[0] == out[1] == (RETAKE, "quality", True, DEFER, "retakes_exhausted", 1, True)
+
+
+def test_gate_for_picks_temperature_and_median_over_seeds():
+    from tomato_agent.pipeline import gate_for
+    th = {"per_run": {
+        "bb/seed0/Tpv/10:1": {"proposed": {"tau_accept": 0.9, "tau_defer": 0.5, "retake_budget": 1}},
+        "bb/seed1/Tpv/10:1": {"proposed": {"tau_accept": 0.7, "tau_defer": 0.3, "retake_budget": 1}},
+        "bb/seed2/Tpv/10:1": {"proposed": {"tau_accept": 0.8, "tau_defer": 0.4, "retake_budget": 1}},
+        "bb/seed0/Tpd/10:1": {"proposed": {"tau_accept": 0.4, "tau_defer": 0.2, "retake_budget": 1}},
+        "other/seed0/Tpv/10:1": {"proposed": {"tau_accept": 0.1, "tau_defer": 0.1, "retake_budget": 1}}},
+        "recommended": {"10:1": {"tau_accept": 0.55, "tau_defer": 0.25, "retake_budget": 2}}}
+    g = gate_for(th, "10:1", "pv", "bb")
+    assert (g.tau_accept, g.tau_defer) == (0.8, 0.4)                 # median over seeds, only this backbone
+    assert gate_for(th, "10:1", "pd", "bb").tau_accept == 0.4        # the other temperature variant
+    old = gate_for({"recommended": th["recommended"]}, "10:1", "pv")  # older files without per_run
+    assert (old.tau_accept, old.retake_budget) == (0.55, 2)

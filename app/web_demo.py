@@ -29,7 +29,9 @@ from tomato_agent.classes import CLASSES
 from tomato_agent.content import advice, class_name, retake_tip
 from tomato_agent.gate import DEFER, RETAKE
 from tomato_agent.gate import ACCEPT
-from tomato_agent.pipeline import TomatoAgentPipeline
+from tomato_agent.io_utils import read_json
+from tomato_agent.pipeline import TomatoAgentPipeline, gate_for
+from tomato_agent.gate import GateConfig
 
 PAGE = Path(__file__).with_name("web_demo.html")
 MAX_BYTES = 15 * 1024 * 1024
@@ -37,17 +39,19 @@ LANGS = ("en", "hi", "or")
 
 
 class Demo:
-    def __init__(self, pipe, engine):
-        self.pipe, self.engine = pipe, engine
-        self.cases, self.lock = {}, threading.Lock()
+    def __init__(self, pipe, engine, gates):
+        self.pipe, self.engine, self.gates = pipe, engine, gates   # gates: {"pv": GateConfig, "pd": GateConfig}
+        self.cases, self.case_temp, self.lock = {}, {}, threading.Lock()
 
-    def diagnose(self, data, lang, case_id):
+    def diagnose(self, data, lang, case_id, temp="pv"):
         image = Image.open(io.BytesIO(data)).convert("RGB")
         with self.lock:
             case = self.cases.get(case_id)
-            if case is None or case.closed:
+            if case is None or case.closed or self.case_temp.get(case_id) != temp:
                 case_id, case = uuid.uuid4().hex[:8], self.pipe.new_case()
-                self.cases[case_id] = case
+                self.cases[case_id], self.case_temp[case_id] = case, temp
+            self.pipe.diagnosis.which_T = temp          # pv = lab-fitted temperature, pd = field-fitted temperature
+            self.pipe.gate = self.gates[temp]
             self.pipe.lang = lang
             step = self.pipe.submit(case, image)
             budget = self.pipe.gate.retake_budget
@@ -66,7 +70,8 @@ class Demo:
             "case_id": case_id, "action": step.action, "reason": step.reason, "label": step.label,
             "confidence": step.confidence, "quality": {k: float(v) for k, v in step.quality.items()},
             "photos": len(case.photos), "retakes_used": case.retakes_used, "retake_budget": budget,
-            "closed": case.closed, "case_file": step.case_file, "engine": self.engine, "by_lang": by_lang,
+            "closed": case.closed, "case_file": step.case_file, "engine": self.engine, "by_lang": by_lang, "temp": temp,
+            "T": self.pipe.diagnosis.runs[0].temperature(temp),
             "gate": {"accept": self.pipe.gate.tau_accept, "defer": self.pipe.gate.tau_defer},
         }
         return out
@@ -90,7 +95,8 @@ def make_handler(demo):
             elif path == "/api/info":
                 g = demo.pipe.gate
                 self._send(200, {"engine": demo.engine, "accept": g.tau_accept, "defer": g.tau_defer,
-                                 "retake_budget": g.retake_budget, "classes": list(CLASSES)})
+                                 "retake_budget": g.retake_budget, "classes": list(CLASSES),
+                                 "gates": {k: {"accept": v.tau_accept, "defer": v.tau_defer} for k, v in demo.gates.items()}})
             else:
                 self._send(404, {"error": "not found"})
 
@@ -100,11 +106,12 @@ def make_handler(demo):
                 return self._send(404, {"error": "not found"})
             q = parse_qs(url.query)
             lang = q.get("lang", ["en"])[0]
+            temp = q.get("temp", ["pv"])[0]
             n = int(self.headers.get("Content-Length", 0))
-            if lang not in LANGS or not 0 < n <= MAX_BYTES:
+            if lang not in LANGS or temp not in demo.gates or not 0 < n <= MAX_BYTES:
                 return self._send(400, {"error": "bad request (photo must be under 15 MB)"})
             try:
-                self._send(200, demo.diagnose(self.rfile.read(n), lang, q.get("case", [""])[0]))
+                self._send(200, demo.diagnose(self.rfile.read(n), lang, q.get("case", [""])[0], temp))
             except Exception as e:  # unreadable image etc.
                 self._send(400, {"error": f"{type(e).__name__}: {e}"})
 
@@ -131,7 +138,12 @@ def main():
     pipe = Engine.from_artifacts(
         args.run, args.quality if Path(args.quality).exists() else None,
         args.thresholds if Path(args.thresholds).exists() else None, cost_label=args.cost, cases_dir=args.cases)
-    server = ThreadingHTTPServer(("127.0.0.1", args.port), make_handler(Demo(pipe, args.engine)))
+    th = read_json(args.thresholds) if Path(args.thresholds).exists() else None
+    bb = Path(args.run[0]).parent.name
+    gates = {t: (gate_for(th, args.cost, t, bb) if th else GateConfig()) for t in ("pv", "pd")}
+    for t in gates:
+        print(f"gate for temperature {t}: accept >= {gates[t].tau_accept:.4f}, defer < {gates[t].tau_defer:.4f}")
+    server = ThreadingHTTPServer(("127.0.0.1", args.port), make_handler(Demo(pipe, args.engine, gates)))
     print(f"PatraSathi demo ({args.engine}) at http://127.0.0.1:{args.port}  (Ctrl+C to stop)")
     try:
         server.serve_forever()

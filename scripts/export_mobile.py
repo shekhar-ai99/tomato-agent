@@ -28,6 +28,7 @@ import torch
 
 from tomato_agent import __version__
 from tomato_agent.classes import CLASSES
+from tomato_agent.pipeline import gate_for
 from tomato_agent.io_utils import add_data_args, eval_set, read_json, write_json
 from tomato_agent.models import LoadedRun
 from tomato_agent.quality import FEATURES, WORK_SIZE
@@ -189,6 +190,13 @@ def main():
         print("WARNING: quality or gate thresholds missing; the phone config gets placeholders. "
               "Run set_quality_thresholds.py and run_policy.py first for the real values.")
     T = run.temperature(args.temperature) if args.temperature != "none" else 1.0
+    th_all = read_json(args.thresholds) if Path(args.thresholds).exists() else None
+    calibrations = {}
+    for t in ("pv", "pd"):
+        g = gate_for(th_all, args.cost, t, run.backbone) if th_all and th_all.get("recommended") else None
+        calibrations[t] = {"temperature": run.temperature(t),
+                           "gate": None if g is None else {"tau_accept": g.tau_accept, "tau_defer": g.tau_defer,
+                                                           "paper_retake_budget": g.retake_budget}}
     config = {
         "app": "PatraSathi", "config_version": 1, "tomato_agent_version": __version__,
         "model": {"file": "model_int8.onnx" if int8_ok else "model_fp32.onnx",
@@ -201,6 +209,9 @@ def main():
         "gate": {"tau_accept": (gate or {}).get("tau_accept", 0.90), "tau_defer": (gate or {}).get("tau_defer", 0.50),
                  "retake_budget": args.app_retake_budget, "cost_ratio": args.cost,
                  "paper_retake_budget": (gate or {}).get("retake_budget", 1)},
+        # both calibrations from the paper: "pv" (temperature fitted on PlantVillage) and "pd" (fitted on the PlantDoc
+        # hold-out); "temperature" and "gate" above are the one chosen with --temperature
+        "calibrations": calibrations,
         "quality": {"work_size": WORK_SIZE, "features": FEATURES, "thresholds": q or {}},
         "placeholders": q is None or gate is None,
     }

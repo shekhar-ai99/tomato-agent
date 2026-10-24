@@ -10,6 +10,7 @@ This is a plain-Python state machine (no framework needed). tomato_agent.graph w
 agents in LangGraph if you prefer that orchestration.
 """
 from dataclasses import dataclass, field
+from pathlib import Path
 from typing import Optional
 
 import numpy as np
@@ -19,6 +20,22 @@ from .content import retake_tip
 from .expert import ExpertReferralAgent, build_case, top_k
 from .gate import ACCEPT, DEFER, RETAKE, GateConfig, decide
 from .quality import CaptureQualityAgent
+
+
+def gate_for(thresholds, cost_label="10:1", temperature="pv", backbone=None):
+    """Gate settings for one temperature variant ('pv' = lab-fitted, 'pd' = field-fitted) from results/thresholds.json:
+    the median over seeds of the per-run choices (falls back to the 'recommended' entry for older files)."""
+    import numpy as np
+    per = [v["proposed"] for k, v in (thresholds.get("per_run") or {}).items()
+           if k.endswith(f"/T{temperature}/{cost_label}") and (backbone is None or k.startswith(f"{backbone}/"))]
+    if per:
+        return GateConfig(float(np.median([p["tau_accept"] for p in per])), float(np.median([p["tau_defer"] for p in per])),
+                          int(np.median([p.get("retake_budget", 1) for p in per])))
+    rec = thresholds.get("recommended", {})
+    if not rec:
+        raise ValueError("thresholds file has no recommended thresholds; run scripts/run_policy.py")
+    pick = rec.get(cost_label) or next(iter(rec.values()))
+    return GateConfig(pick["tau_accept"], pick["tau_defer"], pick.get("retake_budget", 1))
 
 
 @dataclass
@@ -61,11 +78,8 @@ class TomatoAgentPipeline:
         qa = CaptureQualityAgent.from_file(quality_file) if quality_file else CaptureQualityAgent()
         cfg = GateConfig()
         if thresholds_file:
-            th = read_json(thresholds_file).get("recommended", {})
-            if not th:
-                raise ValueError(f"{thresholds_file} has no recommended thresholds; run scripts/run_policy.py")
-            pick = th.get(cost_label) or next(iter(th.values()))
-            cfg = GateConfig(pick["tau_accept"], pick["tau_defer"], pick.get("retake_budget", 1))
+            bb = Path(run_dirs[0]).parent.name if run_dirs else None
+            cfg = gate_for(read_json(thresholds_file), cost_label, temperature, bb)
         return cls(qa, DiagnosisAgent(run_dirs, temperature), cfg, ExpertReferralAgent(cases_dir), lang)
 
     def new_case(self):
