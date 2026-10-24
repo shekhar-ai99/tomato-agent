@@ -66,3 +66,46 @@ def build_graph(quality_agent, diagnosis_agent, gate_cfg, expert_agent):
 
 def run(graph, state, image):
     return graph.invoke({**state, "image": image})
+
+
+class _RecordingExpert:
+    """Wraps the expert agent so the adapter can report where the case file was written."""
+
+    def __init__(self, expert):
+        self.expert = expert
+        self.last_path = None
+
+    def refer(self, case):
+        self.last_path = self.expert.refer(case)
+        return self.last_path
+
+
+from .content import retake_tip  # noqa: E402
+from .pipeline import Step, TomatoAgentPipeline  # noqa: E402
+
+
+class GraphPipeline(TomatoAgentPipeline):
+    """TomatoAgentPipeline whose submit() runs the LangGraph above (same Case/Step API, so the demo can use either)."""
+
+    def submit(self, case, image, photo_ref=None):
+        if case.closed:
+            raise RuntimeError("case already closed; start a new_case()")
+        recorder = _RecordingExpert(self.expert)
+        graph = build_graph(self.quality, self.diagnosis, self.gate, recorder)
+        case.photos.append(photo_ref or f"photo_{len(case.photos)}")
+        out = run(graph, {"retakes_used": case.retakes_used, "history": list(case.history)}, image)
+        case.history = out["history"]
+        probs = out["probs"]
+        action, reason = out["action"], out["reason"]
+        reasons = out.get("quality_reasons") or []
+        step = Step(action, reason, "", out["quality_features"], probs, CLASSES[int(probs.argmax())], float(probs.max()))
+        if action == RETAKE:
+            case.retakes_used = out["retakes_used"]
+            step.message = retake_tip(reasons[0] if reason == "quality" and reasons else "medium_confidence", self.lang)
+        elif action == ACCEPT:
+            case.closed = True
+        else:
+            case.closed = True
+            step.case_file = str(recorder.last_path)
+            step.message = retake_tip("deferred", self.lang)
+        return step

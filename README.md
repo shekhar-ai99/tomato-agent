@@ -81,12 +81,12 @@ Training 3 backbones × 5 seeds takes about 5–8 hours in total with early stop
 ## Demo (optional)
 
 ```bash
-pip install -r requirements-optional.txt
-python app/demo.py --run runs/efficientnet_b0/seed0
+pip install langgraph        # the demo runs the LangGraph agent loop; no LLM, no API key
+python app/web_demo.py --run runs/efficientnet_b0/seed0
 ```
 
-This opens a local web page (127.0.0.1 only). You upload or take a leaf photo, and the demo returns a diagnosis with advice, a retake tip, or "sent to expert", in English, Hindi or Odia. Deferred cases are saved to `cases/`.
-To get explanations, install [Ollama](https://ollama.com), run `ollama pull llama3.1:8b` (or `qwen2.5vl:7b`) and tick *Explain with local LLM*.
+This opens a local web page (127.0.0.1 only, standard library, no Gradio). You upload or take a leaf photo, and the demo returns a diagnosis with advice, a retake tip, or "sent to expert", in English, Hindi or Odia. Deferred cases are saved to `cases/`. `--engine pipeline` runs the plain-Python loop instead (same decisions). The older Gradio version is still in `app/demo.py` (`pip install gradio`).
+LLM explanations are only in the Gradio demo: install [Ollama](https://ollama.com), run `ollama pull llama3.1:8b` (or `qwen2.5vl:7b`) and tick *Explain with local LLM*.
 
 ## Farmer-facing content
 

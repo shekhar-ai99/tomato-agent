@@ -71,8 +71,14 @@ def main():
     ap.add_argument("--thresholds", default="results/thresholds.json")
     ap.add_argument("--cost", default="10:1")
     ap.add_argument("--port", type=int, default=7860)
+    ap.add_argument("--engine", choices=["langgraph", "pipeline"], default="langgraph",
+                    help="langgraph = the LangGraph agent loop (pip install langgraph); pipeline = plain Python, same decisions")
     args = ap.parse_args()
-    pipe = TomatoAgentPipeline.from_artifacts(
+    if args.engine == "langgraph":
+        from tomato_agent.graph import GraphPipeline as Engine
+    else:
+        Engine = TomatoAgentPipeline
+    pipe = Engine.from_artifacts(
         args.run, args.quality if Path(args.quality).exists() else None,
         args.thresholds if Path(args.thresholds).exists() else None, cost_label=args.cost)
     budget = pipe.gate.retake_budget
@@ -89,7 +95,7 @@ def main():
     with gr.Blocks(title="PatraSathi · tomato-agent demo") as demo:
         gr.Markdown("# 🍅 PatraSathi · ପତ୍ରସାଥୀ\nConfidence-gated tomato leaf diagnosis, fully offline. "
                     f"Gate: accept ≥ {pipe.gate.tau_accept:.2f}, defer < {pipe.gate.tau_defer:.2f}, "
-                    f"up to {budget} retake(s).")
+                    f"up to {budget} retake(s). Engine: {args.engine}.")
         case = gr.State(None)
         with gr.Row():
             with gr.Column():

@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PatraSathi · Tomato leaf check</title>
+<style>
+  :root{
+    --bg:#f5f7f2; --card:#ffffff; --ink:#1d2a1f; --mute:#667064; --line:#e2e8dd;
+    --brand:#c8372d; --leaf:#2f7d3a; --leaf-soft:#e6f2e4;
+    --ok:#2f7d3a; --ok-bg:#e6f2e4; --warn:#a56a00; --warn-bg:#fff3d6; --bad:#b3261e; --bad-bg:#fde7e4;
+    --shadow:0 1px 2px rgba(20,40,20,.06),0 8px 24px rgba(20,40,20,.06);
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --bg:#111712; --card:#1a231b; --ink:#e8f0e6; --mute:#95a592; --line:#2a362b;
+      --leaf-soft:#1f3322; --ok:#6fcf7b; --ok-bg:#1f3322; --warn:#f0b84a; --warn-bg:#3a2e12; --bad:#ff8a80; --bad-bg:#3d1d1a;
+      --shadow:none;
+    }
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+  header{display:flex;align-items:center;justify-content:space-between;gap:12px;max-width:980px;margin:0 auto;padding:20px 16px 8px}
+  .logo{display:flex;align-items:center;gap:12px}
+  .logo .mark{width:42px;height:42px;border-radius:12px;background:var(--leaf);display:grid;place-items:center;font-size:24px}
+  .logo h1{font-size:20px;margin:0;line-height:1.1}
+  .logo small{color:var(--mute)}
+  .lang{display:inline-flex;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:3px}
+  .lang button{border:0;background:none;color:var(--mute);padding:6px 14px;border-radius:999px;font:inherit;font-size:14px;cursor:pointer}
+  .lang button[aria-pressed="true"]{background:var(--leaf);color:#fff}
+  main{max-width:980px;margin:0 auto;padding:8px 16px 40px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:20px}
+  @media (max-width:760px){main{grid-template-columns:1fr}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);padding:18px}
+  .drop{border:2px dashed var(--line);border-radius:14px;min-height:260px;display:grid;place-items:center;text-align:center;
+        cursor:pointer;overflow:hidden;position:relative;transition:border-color .15s,background .15s}
+  .drop:hover,.drop.over{border-color:var(--leaf);background:var(--leaf-soft)}
+  .drop img{width:100%;height:100%;max-height:340px;object-fit:contain;display:block}
+  .drop .hint{padding:24px;color:var(--mute)}
+  .drop .hint b{display:block;color:var(--ink);font-size:17px;margin-bottom:4px}
+  .drop .hint .big{font-size:44px;display:block;margin-bottom:6px}
+  .row{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
+  button.btn{font:inherit;font-weight:600;border-radius:12px;padding:12px 18px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}
+  button.primary{background:var(--leaf);border-color:var(--leaf);color:#fff;flex:1}
+  button.btn:disabled{opacity:.5;cursor:not-allowed}
+  .meta{color:var(--mute);font-size:13px;margin-top:12px}
+  .badge{display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:6px 14px;font-weight:700;font-size:14px}
+  .b-accept{background:var(--ok-bg);color:var(--ok)} .b-retake{background:var(--warn-bg);color:var(--warn)} .b-defer{background:var(--bad-bg);color:var(--bad)}
+  h2{font-size:26px;margin:12px 0 2px;line-height:1.2}
+  .about{color:var(--mute);margin:4px 0 14px}
+  .conf{margin:12px 0 4px;display:flex;justify-content:space-between;font-size:14px;color:var(--mute)}
+  .bar{height:10px;background:var(--line);border-radius:99px;overflow:hidden;position:relative}
+  .bar>i{display:block;height:100%;background:var(--leaf);border-radius:99px;transition:width .5s}
+  .bar.top>i{background:#9fb59c}
+  .gate{position:absolute;top:-3px;bottom:-3px;width:2px;background:var(--ink);opacity:.5}
+  .sec{margin-top:16px}
+  .sec h3{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);margin:0 0 6px}
+  .sec ul{margin:0;padding-left:20px} .sec li{margin:3px 0}
+  .alt{display:grid;grid-template-columns:minmax(0,1fr) 44px;gap:4px 10px;align-items:center;font-size:14px;margin:6px 0}
+  .alt .bar{grid-column:1/-1;height:6px}
+  .alt span:last-child{text-align:right;color:var(--mute)}
+  .chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+  .chip{font-size:12px;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:4px 9px;color:var(--mute)}
+  .note{margin-top:16px;padding:12px 14px;border-radius:12px;background:var(--warn-bg);color:var(--warn);font-size:14px}
+  .tip{padding:14px 16px;border-radius:12px;background:var(--warn-bg);color:var(--warn);margin-top:10px}
+  .empty{display:grid;place-items:center;min-height:300px;color:var(--mute);text-align:center}
+  .err{color:var(--bad)}
+  .spin{width:22px;height:22px;border:3px solid var(--line);border-top-color:var(--leaf);border-radius:50%;animation:s .8s linear infinite;display:inline-block;vertical-align:middle}
+  @keyframes s{to{transform:rotate(360deg)}}
+  footer{max-width:980px;margin:0 auto;padding:0 16px 30px;color:var(--mute);font-size:13px}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo"><div class="mark">🍅</div><div><h1>PatraSathi · ପତ୍ରସାଥୀ</h1><small id="sub">Tomato leaf check · works offline</small></div></div>
+  <div class="lang" role="group" aria-label="Language">
+    <button data-l="en" aria-pressed="true">English</button><button data-l="hi" aria-pressed="false">हिन्दी</button><button data-l="or" aria-pressed="false">ଓଡ଼ିଆ</button>
+  </div>
+</header>
+<main>
+  <section class="card">
+    <div class="drop" id="drop" tabindex="0" role="button" aria-label="Choose a photo">
+      <div class="hint" id="hint"><span class="big">📷</span><b id="t_drop">Add a photo of one tomato leaf</b><span id="t_drop2">Drop it here, click to choose, or use the camera</span></div>
+    </div>
+    <input id="file" type="file" accept="image/*" hidden>
+    <input id="cam" type="file" accept="image/*" capture="environment" hidden>
+    <div class="row">
+      <button class="btn primary" id="go" disabled>Diagnose</button>
+      <button class="btn" id="camBtn" title="Camera">📸</button>
+      <button class="btn" id="new">New case</button>
+    </div>
+    <div class="meta" id="case">No case yet</div>
+  </section>
+  <section class="card" id="out"><div class="empty"><div><div style="font-size:42px">🌿</div><p id="t_empty">Your result will appear here.</p></div></div></section>
+</main>
+<footer id="foot">Advice is a draft until reviewed by an agronomist. Always confirm with your local KVK before spraying.</footer>
+<script>
+const T={
+ en:{sub:"Tomato leaf check · works offline",drop:"Add a photo of one tomato leaf",drop2:"Drop it here, click to choose, or use the camera",go:"Diagnose",new:"New case",empty:"Your result will appear here.",
+  accept:"Diagnosis",retake:"Please retake the photo",defer:"Sent to an expert",conf:"Calibrated confidence",top:"Other candidates",do_now:"Do now",organic:"Organic / cultural",chemical:"If needed",prevention:"Prevention",
+  photo:"photos",retakes:"retakes",nocase:"No case yet",busy:"Checking…",quality:"Photo quality",sharp:"sharpness",bright:"brightness",leaf:"leaf",case:"Case file saved for the expert",gate:"Accept at ≥",
+  foot:"Advice is a draft until reviewed by an agronomist. Always confirm with your local KVK before spraying.",reason:{confident:"confident",quality:"photo quality too low",medium_confidence:"not sure yet",low_confidence:"low confidence",retakes_exhausted:"retakes used up"}},
+ hi:{sub:"टमाटर पत्ती जाँच · ऑफ़लाइन",drop:"टमाटर की एक पत्ती की फ़ोटो जोड़ें",drop2:"यहाँ छोड़ें, चुनने के लिए क्लिक करें, या कैमरा इस्तेमाल करें",go:"जाँच करें",new:"नया मामला",empty:"नतीजा यहाँ दिखेगा।",
+  accept:"निदान",retake:"कृपया फिर से फ़ोटो लें",defer:"विशेषज्ञ को भेजा गया",conf:"विश्वसनीयता",top:"अन्य संभावनाएँ",do_now:"अभी करें",organic:"जैविक / खेती के उपाय",chemical:"ज़रूरत हो तो",prevention:"रोकथाम",
+  photo:"फ़ोटो",retakes:"दोबारा",nocase:"अभी कोई मामला नहीं",busy:"जाँच जारी…",quality:"फ़ोटो की गुणवत्ता",sharp:"स्पष्टता",bright:"रोशनी",leaf:"पत्ती",case:"विशेषज्ञ के लिए फ़ाइल सहेजी गई",gate:"स्वीकार ≥",
+  foot:"सलाह अभी मसौदा है, कृषि विशेषज्ञ की जाँच ज़रूरी। छिड़काव से पहले अपने KVK से पुष्टि करें।",reason:{}},
+ or:{sub:"ଟମାଟୋ ପତ୍ର ଯାଞ୍ଚ · ଅଫଲାଇନ",drop:"ଟମାଟୋର ଗୋଟିଏ ପତ୍ରର ଫଟୋ ଦିଅନ୍ତୁ",drop2:"ଏଠାରେ ଛାଡନ୍ତୁ, ବାଛିବାକୁ କ୍ଲିକ୍ କରନ୍ତୁ, କିମ୍ବା କ୍ୟାମେରା ବ୍ୟବହାର କରନ୍ତୁ",go:"ଯାଞ୍ଚ କରନ୍ତୁ",new:"ନୂଆ ମାମଲା",empty:"ଫଳାଫଳ ଏଠାରେ ଦେଖାଯିବ।",
+  accept:"ରୋଗ ନିର୍ଣ୍ଣୟ",retake:"ଦୟାକରି ପୁଣି ଫଟୋ ନିଅନ୍ତୁ",defer:"ବିଶେଷଜ୍ଞଙ୍କୁ ପଠାଗଲା",conf:"ବିଶ୍ୱସନୀୟତା",top:"ଅନ୍ୟ ସମ୍ଭାବନା",do_now:"ଏବେ କରନ୍ତୁ",organic:"ଜୈବିକ / ଚାଷ ଉପାୟ",chemical:"ଦରକାର ହେଲେ",prevention:"ପ୍ରତିରୋଧ",
+  photo:"ଫଟୋ",retakes:"ପୁଣି",nocase:"ଏପର୍ଯ୍ୟନ୍ତ କୌଣସି ମାମଲା ନାହିଁ",busy:"ଯାଞ୍ଚ ଚାଲିଛି…",quality:"ଫଟୋର ଗୁଣବତ୍ତା",sharp:"ସ୍ପଷ୍ଟତା",bright:"ଆଲୋକ",leaf:"ପତ୍ର",case:"ବିଶେଷଜ୍ଞଙ୍କ ପାଇଁ ଫାଇଲ୍ ସଞ୍ଚିତ",gate:"ଗ୍ରହଣ ≥",
+  foot:"ପରାମର୍ଶ ଏବେ ଖସଡା, କୃଷି ବିଶେଷଜ୍ଞଙ୍କ ଯାଞ୍ଚ ଦରକାର। ସ୍ପ୍ରେ ପୂର୍ବରୁ KVK ସହ ନିଶ୍ଚିତ କରନ୍ତୁ।",reason:{}}
+};
+let lang="en", caseId="", fileBlob=null, last=null;
+const $=id=>document.getElementById(id), t=k=>(T[lang][k]??T.en[k]);
+const ICON={accept:"✅",retake:"📷",defer:"🧑‍🌾"};
+
+function applyLang(){
+  document.documentElement.lang=lang;
+  $("sub").textContent=t("sub"); $("t_drop")&&($("t_drop").textContent=t("drop")); $("t_drop2")&&($("t_drop2").textContent=t("drop2"));
+  $("go").textContent=t("go"); $("new").textContent=t("new"); $("foot").textContent=t("foot");
+  $("t_empty")&&($("t_empty").textContent=t("empty"));
+  document.querySelectorAll(".lang button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.l===lang));
+  if(!last) $("case").textContent=t("nocase");
+  if(last) render(last);
+}
+document.querySelectorAll(".lang button").forEach(b=>b.onclick=()=>{lang=b.dataset.l;applyLang()});
+
+function setFile(f){
+  if(!f) return; fileBlob=f; $("go").disabled=false;
+  const url=URL.createObjectURL(f);
+  $("drop").innerHTML=`<img alt="selected leaf photo" src="${url}">`;
+}
+const drop=$("drop");
+drop.onclick=()=>$("file").click();
+drop.onkeydown=e=>{if(e.key==="Enter"||e.key===" ")$("file").click()};
+$("file").onchange=e=>setFile(e.target.files[0]);
+$("cam").onchange=e=>setFile(e.target.files[0]);
+$("camBtn").onclick=()=>$("cam").click();
+["dragenter","dragover"].forEach(ev=>drop.addEventListener(ev,e=>{e.preventDefault();drop.classList.add("over")}));
+["dragleave","drop"].forEach(ev=>drop.addEventListener(ev,e=>{e.preventDefault();drop.classList.remove("over")}));
+drop.addEventListener("drop",e=>setFile(e.dataTransfer.files[0]));
+$("go").onclick=()=>diagnose();
+$("new").onclick=()=>{caseId="";last=null;fileBlob=null;$("go").disabled=true;
+  drop.innerHTML=`<div class="hint"><span class="big">📷</span><b id="t_drop"></b><span id="t_drop2"></span></div>`;
+  $("out").innerHTML=`<div class="empty"><div><div style="font-size:42px">🌿</div><p id="t_empty"></p></div></div>`;applyLang()};
+
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const pct=x=>Math.round(x*100)+"%";
+const list=(h,a)=>a&&a.length?`<div class="sec"><h3>${h}</h3><ul>${a.map(x=>`<li>${esc(x)}</li>`).join("")}</ul></div>`:"";
+
+async function diagnose(){
+  if(!fileBlob) return;
+  $("go").disabled=true;
+  $("out").innerHTML=`<div class="empty"><div><span class="spin"></span><p>${t("busy")}</p></div></div>`;
+  try{
+    const r=await fetch(`/api/diagnose?lang=${lang}&case=${caseId}`,{method:"POST",body:fileBlob});
+    const d=await r.json(); if(!r.ok) throw new Error(d.error); render(d);
+  }catch(e){ $("out").innerHTML=`<p class="err">⚠ ${esc(e.message)}</p>`; }
+  $("go").disabled=false;
+}
+
+function render(d){
+  if(d.error){ $("out").innerHTML=`<p class="err">⚠ ${esc(d.error)}</p>`; return; }
+  last=d; caseId=d.closed?"":d.case_id; const L=d.by_lang[lang];
+  $("case").textContent=`${d.photos} ${t("photo")} · ${d.retakes_used}/${d.retake_budget} ${t("retakes")} · ${d.engine}`;
+  const q=d.quality||{}, a=L.advice;
+  let h=`<span class="badge b-${d.action}">${ICON[d.action]} ${t(d.action)}</span>`;
+  if(d.action==="accept"){
+    h+=`<h2>${esc(a.name)}</h2><p class="about">${esc(a.about)}</p>`;
+  } else {
+    h+=`<div class="tip">${esc(L.message)}</div>`;
+  }
+  h+=`<div class="conf"><span>${t("conf")} · ${esc(L.name)}</span><b>${pct(d.confidence)}</b></div>
+      <div class="bar"><i style="width:${d.confidence*100}%"></i><span class="gate" style="left:${d.gate.accept*100}%" title="${t("gate")} ${pct(d.gate.accept)}"></span></div>`;
+  if(d.action==="accept"){
+    h+=list(t("do_now"),a.do_now)+list(t("organic"),a.organic)+list(t("chemical"),a.chemical)+list(t("prevention"),a.prevention);
+    if(a.disclaimer) h+=`<div class="note">${esc(a.disclaimer)}</div>`;
+  }
+  h+=`<div class="sec"><h3>${t("top")}</h3>${L.top.map(x=>`<div class="alt"><span>${esc(x.name)}</span><span>${pct(x.prob)}</span><div class="bar top"><i style="width:${x.prob*100}%"></i></div></div>`).join("")}</div>`;
+  if(d.case_file) h+=`<div class="note">🧑‍🌾 ${t("case")}:<br><small>${esc(d.case_file)}</small></div>`;
+  h+=`<div class="chips"><span class="chip">${t("quality")}:</span>
+      <span class="chip">${t("sharp")} ${Math.round(q.sharpness||0)}</span><span class="chip">${t("bright")} ${(q.lum_mean||0).toFixed(2)}</span><span class="chip">${t("leaf")} ${pct(q.leaf_frac||0)}</span>
+      <span class="chip">${esc((T[lang].reason||{})[d.reason]||d.reason)}</span></div>`;
+  $("out").innerHTML=h;
+}
+applyLang();
+</script>
+</body>
+</html>

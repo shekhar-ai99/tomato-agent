@@ -92,3 +92,22 @@ def test_langgraph_matches_pipeline(tmp_path):
     assert s["action"] == RETAKE
     s = run(g, s, good_leaf())
     assert s["action"] == ACCEPT and len(s["history"]) == 2
+
+
+def test_graph_pipeline_same_flow_as_plain_pipeline(tmp_path):
+    pytest.importorskip("langgraph")
+    from tomato_agent.expert import ExpertReferralAgent
+    from tomato_agent.graph import GraphPipeline
+    dark = Image.new("RGB", (256, 256), (5, 8, 5))
+    seqs = [(0.95, 0), (0.6, 0)]
+    plain = make(seqs, tmp_path / "plain")
+    graph = GraphPipeline(CaptureQualityAgent(), FakeDiagnosis(seqs), GateConfig(0.8, 0.4, 1),
+                          ExpertReferralAgent(tmp_path / "graph"))
+    out = []
+    for pipe in (plain, graph):
+        case = pipe.new_case()
+        s1 = pipe.submit(case, dark)
+        s2 = pipe.submit(case, good_leaf())
+        out.append((s1.action, s1.reason, bool(s1.message), s2.action, s2.reason, case.retakes_used, case.closed))
+        assert s2.case_file and json.loads(open(s2.case_file, encoding="utf-8").read())["reason"] == "retakes_exhausted"
+    assert out[0] == out[1] == (RETAKE, "quality", True, DEFER, "retakes_exhausted", 1, True)
