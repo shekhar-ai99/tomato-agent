@@ -1,0 +1,77 @@
+{
+  "thresholds": {
+    "min_sharpness": 80.72813248991588,
+    "min_lum_mean": 0.21613817904603247,
+    "max_dark_frac": 0.64312744140625,
+    "max_lum_mean": 0.8286724409519499,
+    "max_bright_frac": 0.6372416992187426,
+    "min_leaf_frac": 0.13687908935546875
+  },
+  "selection": [
+    {
+      "threshold": "min_sharpness",
+      "value": 80.728132,
+      "feature": "sharpness",
+      "tpr_on": "gaussian_blur+motion_blur",
+      "tpr": 0.748,
+      "fpr_clean_max": 0.0201
+    },
+    {
+      "threshold": "min_lum_mean",
+      "value": 0.216138,
+      "feature": "lum_mean",
+      "tpr_on": "low_light",
+      "tpr": 0.9963,
+      "fpr_clean_max": 0.0
+    },
+    {
+      "threshold": "max_dark_frac",
+      "value": 0.643127,
+      "feature": "dark_frac",
+      "tpr_on": "low_light",
+      "tpr": 0.0019,
+      "fpr_clean_max": 0.0
+    },
+    {
+      "threshold": "max_lum_mean",
+      "value": 0.828672,
+      "feature": "lum_mean",
+      "tpr_on": "over_exposure",
+      "tpr": 0.8458,
+      "fpr_clean_max": 0.0268
+    },
+    {
+      "threshold": "max_bright_frac",
+      "value": 0.637242,
+      "feature": "bright_frac",
+      "tpr_on": "over_exposure",
+      "tpr": 0.4724,
+      "fpr_clean_max": 0.0268
+    },
+    {
+      "threshold": "min_leaf_frac",
+      "value": 0.136879,
+      "feature": "leaf_frac",
+      "tpr_on": "occlusion",
+      "tpr": 0.8019,
+      "fpr_clean_max": 0.0293
+    }
+  ],
+  "selected_on": [
+    "pv_val",
+    "pd_calib"
+  ],
+  "max_fpr": 0.03,
+  "levels": [
+    2
+  ],
+  "copies": 2,
+  "work_size": 256,
+  "features": [
+    "sharpness",
+    "lum_mean",
+    "dark_frac",
+    "bright_frac",
+    "leaf_frac"
+  ]
+}

@@ -1,0 +1,4 @@
+# Optional extras, not needed for the paper
+gradio>=4.0        # app/demo.py, local web demo
+langgraph>=0.2     # tomato_agent/graph.py, LangGraph version of the agent loop
+onnxscript         # only if your torch version asks for it during ONNX export

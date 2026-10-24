@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tomato-agent"
+version = "1.0.0"
+description = "Confidence-gated agentic diagnosis of tomato leaf diseases (offline v1.0)"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [{ name = "Chandra Shekhar" }, { name = "Nibedita Adhikari" }]
+
+[tool.setuptools]
+packages = ["tomato_agent"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

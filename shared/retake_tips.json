@@ -1,0 +1,33 @@
+{
+  "_note": "Retake guidance shown when the quality agent flags a photo or confidence is medium. Shared by tomato-agent (Python) and PatraSathi (Android assets). Keys: en, hi, or.",
+  "no_leaf": {
+    "en": "I can't see a tomato leaf clearly. Hold one leaf flat, fill most of the frame with it, and keep your fingers out of the way.",
+    "hi": "टमाटर की पत्ती साफ़ नहीं दिख रही। एक पत्ती को सीधा पकड़ें, फ्रेम का ज़्यादातर हिस्सा पत्ती से भरें और उंगलियाँ सामने न आने दें।",
+    "or": "ଟମାଟୋ ପତ୍ର ସ୍ପଷ୍ଟ ଦେଖାଯାଉନାହିଁ। ଗୋଟିଏ ପତ୍ରକୁ ସିଧା ଧରନ୍ତୁ, ଫ୍ରେମର ଅଧିକାଂଶ ଭାଗ ପତ୍ରରେ ଭରନ୍ତୁ ଏବଂ ଆଙ୍ଗୁଠି ସାମ୍ନାକୁ ଆସିବାକୁ ଦିଅନ୍ତୁ ନାହିଁ।"
+  },
+  "blurry": {
+    "en": "The photo is blurry. Hold the phone steady with both hands, tap the leaf on the screen to focus, and wait a second before taking the photo.",
+    "hi": "फ़ोटो धुंधली है। फ़ोन को दोनों हाथों से स्थिर पकड़ें, फोकस के लिए स्क्रीन पर पत्ती को छुएँ, और एक पल रुककर फ़ोटो लें।",
+    "or": "ଫଟୋଟି ଅସ୍ପଷ୍ଟ। ଫୋନକୁ ଦୁଇ ହାତରେ ସ୍ଥିର ଧରନ୍ତୁ, ଫୋକସ ପାଇଁ ସ୍କ୍ରିନରେ ପତ୍ରକୁ ଛୁଅଁନ୍ତୁ ଏବଂ ଟିକେ ଅପେକ୍ଷା କରି ଫଟୋ ନିଅନ୍ତୁ।"
+  },
+  "too_dark": {
+    "en": "The photo is too dark. Move to open daylight or turn the leaf toward the light. Avoid deep shade.",
+    "hi": "फ़ोटो बहुत अंधेरी है। खुली धूप/रोशनी में जाएँ या पत्ती को रोशनी की ओर घुमाएँ। घनी छाया से बचें।",
+    "or": "ଫଟୋଟି ବହୁତ ଅନ୍ଧାର। ଖୋଲା ଆଲୁଅକୁ ଯାଆନ୍ତୁ କିମ୍ବା ପତ୍ରକୁ ଆଲୁଅ ଆଡ଼କୁ ବୁଲାନ୍ତୁ। ଘଞ୍ଚ ଛାଇରୁ ଦୂରରେ ରୁହନ୍ତୁ।"
+  },
+  "too_bright": {
+    "en": "The photo is too bright or has glare. Stand so your shadow falls on the leaf, or take the photo in morning or evening light.",
+    "hi": "फ़ोटो में बहुत ज़्यादा रोशनी या चमक है। ऐसे खड़े हों कि आपकी छाया पत्ती पर पड़े, या सुबह/शाम की रोशनी में फ़ोटो लें।",
+    "or": "ଫଟୋରେ ବହୁତ ଅଧିକ ଆଲୁଅ କିମ୍ବା ଚମକ ଅଛି। ଏପରି ଠିଆ ହୁଅନ୍ତୁ ଯେପରି ଆପଣଙ୍କ ଛାଇ ପତ୍ର ଉପରେ ପଡ଼ିବ, କିମ୍ବା ସକାଳ/ସନ୍ଧ୍ୟା ଆଲୁଅରେ ଫଟୋ ନିଅନ୍ତୁ।"
+  },
+  "medium_confidence": {
+    "en": "I'm not sure yet. Please take one more photo of a different leaf with clear spots, close up, in good light.",
+    "hi": "मुझे अभी पक्का नहीं पता। कृपया दाग़ वाली किसी दूसरी पत्ती की पास से, अच्छी रोशनी में एक और फ़ोटो लें।",
+    "or": "ମୁଁ ଏବେ ନିଶ୍ଚିତ ନୁହେଁ। ଦୟାକରି ଦାଗ ଥିବା ଅନ୍ୟ ଏକ ପତ୍ରର ପାଖରୁ, ଭଲ ଆଲୁଅରେ ଆଉ ଗୋଟିଏ ଫଟୋ ନିଅନ୍ତୁ।"
+  },
+  "deferred": {
+    "en": "I could not decide safely. Your case has been saved for an agricultural expert. Please do not spray any chemical until the expert replies.",
+    "hi": "मैं सुरक्षित रूप से तय नहीं कर पाया। आपका केस कृषि विशेषज्ञ के लिए सहेज लिया गया है। विशेषज्ञ के जवाब तक कोई रसायन न छिड़कें।",
+    "or": "ମୁଁ ସୁରକ୍ଷିତ ଭାବେ ନିଷ୍ପତ୍ତି ନେଇପାରିଲି ନାହିଁ। ଆପଣଙ୍କ କେସ କୃଷି ବିଶେଷଜ୍ଞଙ୍କ ପାଇଁ ସଞ୍ଚୟ କରାଗଲା। ବିଶେଷଜ୍ଞଙ୍କ ଉତ୍ତର ନ ଆସିବା ପର୍ଯ୍ୟନ୍ତ କୌଣସି ରାସାୟନିକ ସିଞ୍ଚନ କରନ୍ତୁ ନାହିଁ।"
+  }
+}

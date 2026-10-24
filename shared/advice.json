@@ -1,0 +1,227 @@
+{
+  "_meta": {
+    "status": "DRAFT - must be reviewed and signed off by an agronomist (OUAT Bhubaneswar or the local KVK) before any field use. Doses are common label rates; always follow the product label.",
+    "version": "2026-10-24-draft",
+    "disclaimer": {
+      "en": "AI suggestion, not a prescription. Confirm with your local KVK or agriculture officer before spraying. Read the product label, wear gloves and a mask, and respect the waiting period before harvest.",
+      "hi": "यह AI का सुझाव है, नुस्खा नहीं। छिड़काव से पहले अपने KVK या कृषि अधिकारी से पुष्टि करें। दवा का लेबल पढ़ें, दस्ताने और मास्क पहनें, और तुड़ाई से पहले की प्रतीक्षा अवधि का पालन करें।",
+      "or": "ଏହା AI ପରାମର୍ଶ, ପ୍ରେସକ୍ରିପସନ ନୁହେଁ। ସିଞ୍ଚନ ପୂର୍ବରୁ ନିଜ KVK କିମ୍ବା କୃଷି ଅଧିକାରୀଙ୍କ ସହ ନିଶ୍ଚିତ କରନ୍ତୁ। ଔଷଧର ଲେବଲ ପଢ଼ନ୍ତୁ, ଗ୍ଲୋଭସ ଓ ମାସ୍କ ପିନ୍ଧନ୍ତୁ ଏବଂ ଅମଳ ପୂର୍ବର ଅପେକ୍ଷା ସମୟ ମାନନ୍ତୁ।"
+    }
+  },
+  "bacterial_spot": {
+    "name": {"en": "Bacterial spot", "hi": "बैक्टीरियल स्पॉट (जीवाणु धब्बा)", "or": "ବ୍ୟାକ୍ଟେରିଆଲ ସ୍ପଟ (ଜୀବାଣୁ ଦାଗ)"},
+    "about": {
+      "en": "Small dark, water-soaked spots on leaves that turn brown with a yellow edge. Spreads fast in rain and splashing water.",
+      "hi": "पत्तियों पर छोटे, गहरे, पानी जैसे धब्बे जो बाद में पीले किनारे के साथ भूरे हो जाते हैं। बारिश और पानी के छींटों से तेज़ी से फैलता है।",
+      "or": "ପତ୍ରରେ ଛୋଟ, ଗାଢ଼, ପାଣିଆ ଦାଗ ଯାହା ପରେ ହଳଦିଆ ଧାର ସହ ମାଟିଆ ହୋଇଯାଏ। ବର୍ଷା ଓ ପାଣି ଛିଟାରେ ଶୀଘ୍ର ବ୍ୟାପେ।"
+    },
+    "do_now": {
+      "en": ["Remove and destroy badly spotted leaves.", "Avoid overhead watering; water at the base of the plant."],
+      "hi": ["ज़्यादा धब्बे वाली पत्तियाँ तोड़कर नष्ट करें।", "ऊपर से पानी न दें; पौधे की जड़ के पास पानी दें।"],
+      "or": ["ଅଧିକ ଦାଗ ଥିବା ପତ୍ର ତୋଳି ନଷ୍ଟ କରନ୍ତୁ।", "ଉପରୁ ପାଣି ଦିଅନ୍ତୁ ନାହିଁ; ଗଛ ମୂଳରେ ପାଣି ଦିଅନ୍ତୁ।"]
+    },
+    "organic": {
+      "en": ["Do not work in the field when plants are wet.", "Use disease-free seed and seedlings."],
+      "hi": ["पौधे गीले हों तब खेत में काम न करें।", "रोग-मुक्त बीज और पौध का उपयोग करें।"],
+      "or": ["ଗଛ ଓଦା ଥିବାବେଳେ କ୍ଷେତରେ କାମ କରନ୍ତୁ ନାହିଁ।", "ରୋଗମୁକ୍ତ ମଞ୍ଜି ଓ ଚାରା ବ୍ୟବହାର କରନ୍ତୁ।"]
+    },
+    "chemical": {
+      "en": ["Copper oxychloride 50% WP, about 3 g per litre of water, every 10 days if spots keep spreading."],
+      "hi": ["कॉपर ऑक्सीक्लोराइड 50% WP, लगभग 3 ग्राम प्रति लीटर पानी, धब्बे फैलते रहें तो हर 10 दिन पर।"],
+      "or": ["କପର ଅକ୍ସିକ୍ଲୋରାଇଡ 50% WP, ପ୍ରାୟ 3 ଗ୍ରାମ ପ୍ରତି ଲିଟର ପାଣି, ଦାଗ ବ୍ୟାପୁଥିଲେ ପ୍ରତି 10 ଦିନରେ।"]
+    },
+    "prevention": {
+      "en": ["Rotate with non-solanaceous crops for 2 years.", "Stake plants and mulch to reduce soil splash."],
+      "hi": ["2 साल तक बैंगन/मिर्च/आलू छोड़कर दूसरी फ़सल लें।", "पौधों को सहारा दें और मल्चिंग करें ताकि मिट्टी के छींटे कम हों।"],
+      "or": ["2 ବର୍ଷ ପାଇଁ ବାଇଗଣ/ଲଙ୍କା/ଆଳୁ ଛଡ଼ା ଅନ୍ୟ ଫସଲ କରନ୍ତୁ।", "ଗଛକୁ ଖୁଣ୍ଟି ଦିଅନ୍ତୁ ଓ ମଲଚିଂ କରନ୍ତୁ ଯେପରି ମାଟି ଛିଟା କମିବ।"]
+    }
+  },
+  "early_blight": {
+    "name": {"en": "Early blight", "hi": "अगेती झुलसा (अर्ली ब्लाइट)", "or": "ଆର୍ଲି ବ୍ଲାଇଟ (ଆଗୁଆ ଝାଉଁଳା)"},
+    "about": {
+      "en": "Brown spots with rings like a target, usually on older lower leaves first. Leaves turn yellow and drop.",
+      "hi": "निशाने जैसे छल्लों वाले भूरे धब्बे, पहले नीचे की पुरानी पत्तियों पर। पत्तियाँ पीली होकर गिर जाती हैं।",
+      "or": "ଲକ୍ଷ୍ୟ ଭଳି ବଳୟ ଥିବା ମାଟିଆ ଦାଗ, ପ୍ରଥମେ ତଳ ପୁରୁଣା ପତ୍ରରେ। ପତ୍ର ହଳଦିଆ ହୋଇ ଝଡ଼ିଯାଏ।"
+    },
+    "do_now": {
+      "en": ["Pick off infected lower leaves and burn or bury them.", "Keep 45-60 cm between plants for air flow."],
+      "hi": ["संक्रमित निचली पत्तियाँ तोड़कर जला दें या गाड़ दें।", "हवा के लिए पौधों के बीच 45-60 सेमी दूरी रखें।"],
+      "or": ["ସଂକ୍ରମିତ ତଳ ପତ୍ର ତୋଳି ପୋଡ଼ି ଦିଅନ୍ତୁ କିମ୍ବା ପୋତି ଦିଅନ୍ତୁ।", "ପବନ ଚଳାଚଳ ପାଇଁ ଗଛ ମଧ୍ୟରେ 45-60 ସେମି ବ୍ୟବଧାନ ରଖନ୍ତୁ।"]
+    },
+    "organic": {
+      "en": ["Trichoderma-enriched compost in the soil.", "Neem oil 3-5 ml per litre with a little soap as a protective spray."],
+      "hi": ["मिट्टी में ट्राइकोडर्मा मिली कम्पोस्ट डालें।", "बचाव के लिए नीम तेल 3-5 मिली प्रति लीटर, थोड़े साबुन के साथ छिड़कें।"],
+      "or": ["ମାଟିରେ ଟ୍ରାଇକୋଡର୍ମା ମିଶା କମ୍ପୋଷ୍ଟ ଦିଅନ୍ତୁ।", "ସୁରକ୍ଷା ପାଇଁ ନିମ୍ବ ତେଲ 3-5 ମିଲି ପ୍ରତି ଲିଟର, ଟିକେ ସାବୁନ ସହ ସିଞ୍ଚନ କରନ୍ତୁ।"]
+    },
+    "chemical": {
+      "en": ["Mancozeb 75% WP, 2-2.5 g per litre, or Chlorothalonil 75% WP, 2 g per litre, every 10-12 days."],
+      "hi": ["मैंकोज़ेब 75% WP, 2-2.5 ग्राम प्रति लीटर, या क्लोरोथालोनिल 75% WP, 2 ग्राम प्रति लीटर, हर 10-12 दिन पर।"],
+      "or": ["ମାଙ୍କୋଜେବ 75% WP, 2-2.5 ଗ୍ରାମ ପ୍ରତି ଲିଟର, କିମ୍ବା କ୍ଲୋରୋଥାଲୋନିଲ 75% WP, 2 ଗ୍ରାମ ପ୍ରତି ଲିଟର, ପ୍ରତି 10-12 ଦିନରେ।"]
+    },
+    "prevention": {
+      "en": ["Crop rotation and removal of old plant debris.", "Balanced fertiliser; weak plants get it more."],
+      "hi": ["फ़सल चक्र अपनाएँ और पुराने पौधों के अवशेष हटाएँ।", "संतुलित खाद दें; कमज़ोर पौधों में यह ज़्यादा होता है।"],
+      "or": ["ଫସଲ ଚକ୍ର କରନ୍ତୁ ଓ ପୁରୁଣା ଗଛ ଅବଶେଷ ହଟାନ୍ତୁ।", "ସନ୍ତୁଳିତ ସାର ଦିଅନ୍ତୁ; ଦୁର୍ବଳ ଗଛରେ ଏହା ଅଧିକ ହୁଏ।"]
+    }
+  },
+  "late_blight": {
+    "name": {"en": "Late blight", "hi": "पछेती झुलसा (लेट ब्लाइट)", "or": "ଲେଟ ବ୍ଲାଇଟ (ପଛୁଆ ଝାଉଁଳା)"},
+    "about": {
+      "en": "Large dark green-brown patches that spread very fast in cool, wet weather, often with white growth under the leaf. Can destroy a field in days.",
+      "hi": "बड़े गहरे हरे-भूरे धब्बे जो ठंडे, नम मौसम में बहुत तेज़ी से फैलते हैं, अक्सर पत्ती के नीचे सफ़ेद फफूंद। कुछ ही दिनों में खेत नष्ट कर सकता है।",
+      "or": "ବଡ଼ ଗାଢ଼ ସବୁଜ-ମାଟିଆ ଦାଗ ଯାହା ଥଣ୍ଡା, ଓଦା ପାଣିପାଗରେ ବହୁତ ଶୀଘ୍ର ବ୍ୟାପେ, ପ୍ରାୟତଃ ପତ୍ର ତଳେ ଧଳା ଫିମ୍ପି। କିଛି ଦିନରେ କ୍ଷେତ ନଷ୍ଟ କରିପାରେ।"
+    },
+    "do_now": {
+      "en": ["Act today: remove and destroy infected plants or parts, away from the field.", "Tell neighbouring farmers; it spreads by wind."],
+      "hi": ["आज ही कदम उठाएँ: संक्रमित पौधे या हिस्से हटाकर खेत से दूर नष्ट करें।", "पड़ोसी किसानों को बताएँ; यह हवा से फैलता है।"],
+      "or": ["ଆଜି ହିଁ ପଦକ୍ଷେପ ନିଅନ୍ତୁ: ସଂକ୍ରମିତ ଗଛ ବା ଅଂଶ ହଟାଇ କ୍ଷେତଠାରୁ ଦୂରରେ ନଷ୍ଟ କରନ୍ତୁ।", "ପଡ଼ୋଶୀ ଚାଷୀଙ୍କୁ ଜଣାନ୍ତୁ; ଏହା ପବନରେ ବ୍ୟାପେ।"]
+    },
+    "organic": {
+      "en": ["Improve drainage and avoid evening irrigation.", "Copper-based sprays are allowed in many organic programmes as protection."],
+      "hi": ["जल निकासी सुधारें और शाम को सिंचाई न करें।", "कई जैविक कार्यक्रमों में बचाव के लिए कॉपर-आधारित छिड़काव की अनुमति है।"],
+      "or": ["ପାଣି ନିଷ୍କାସନ ଭଲ କରନ୍ତୁ ଓ ସନ୍ଧ୍ୟାରେ ଜଳସେଚନ କରନ୍ତୁ ନାହିଁ।", "ଅନେକ ଜୈବିକ କାର୍ଯ୍ୟକ୍ରମରେ ସୁରକ୍ଷା ପାଇଁ କପର-ଆଧାରିତ ସିଞ୍ଚନ ଅନୁମୋଦିତ।"]
+    },
+    "chemical": {
+      "en": ["Metalaxyl 8% + Mancozeb 64% WP, 2.5 g per litre; repeat after 10 days, then switch to Mancozeb alone or a different group."],
+      "hi": ["मेटालेक्सिल 8% + मैंकोज़ेब 64% WP, 2.5 ग्राम प्रति लीटर; 10 दिन बाद दोहराएँ, फिर केवल मैंकोज़ेब या दूसरे समूह की दवा लें।"],
+      "or": ["ମେଟାଲାକ୍ସିଲ 8% + ମାଙ୍କୋଜେବ 64% WP, 2.5 ଗ୍ରାମ ପ୍ରତି ଲିଟର; 10 ଦିନ ପରେ ପୁଣି ଦିଅନ୍ତୁ, ତା'ପରେ କେବଳ ମାଙ୍କୋଜେବ କିମ୍ବା ଅନ୍ୟ ଗୋଷ୍ଠୀର ଔଷଧ ନିଅନ୍ତୁ।"]
+    },
+    "prevention": {
+      "en": ["Do not plant tomato next to potato.", "Watch the crop closely during cool, cloudy, wet spells."],
+      "hi": ["टमाटर को आलू के पास न लगाएँ।", "ठंडे, बादल वाले, नम दिनों में फ़सल पर कड़ी नज़र रखें।"],
+      "or": ["ଟମାଟୋକୁ ଆଳୁ ପାଖରେ ଲଗାନ୍ତୁ ନାହିଁ।", "ଥଣ୍ଡା, ମେଘୁଆ, ଓଦା ଦିନରେ ଫସଲ ଉପରେ କଡ଼ା ନଜର ରଖନ୍ତୁ।"]
+    }
+  },
+  "leaf_mold": {
+    "name": {"en": "Leaf mold", "hi": "पत्ती फफूंद (लीफ मोल्ड)", "or": "ପତ୍ର ଫିମ୍ପି (ଲିଫ ମୋଲ୍ଡ)"},
+    "about": {
+      "en": "Pale yellow patches on top of the leaf with olive-green to brown velvety mould underneath. Common in humid, closed spaces.",
+      "hi": "पत्ती के ऊपर हल्के पीले धब्बे और नीचे जैतूनी-हरी से भूरी मखमली फफूंद। नम, बंद जगहों में आम।",
+      "or": "ପତ୍ର ଉପରେ ଫିକା ହଳଦିଆ ଦାଗ ଓ ତଳେ ଅଲିଭ-ସବୁଜରୁ ମାଟିଆ ମଖମଲି ଫିମ୍ପି। ଆର୍ଦ୍ର, ବନ୍ଦ ସ୍ଥାନରେ ସାଧାରଣ।"
+    },
+    "do_now": {
+      "en": ["Remove affected leaves.", "Open the canopy: prune lower leaves and side shoots for air flow."],
+      "hi": ["प्रभावित पत्तियाँ हटाएँ।", "हवा के लिए निचली पत्तियाँ और फालतू शाखाएँ छाँटें।"],
+      "or": ["ପ୍ରଭାବିତ ପତ୍ର ହଟାନ୍ତୁ।", "ପବନ ପାଇଁ ତଳ ପତ୍ର ଓ ଅନାବଶ୍ୟକ ଡାଳ କାଟନ୍ତୁ।"]
+    },
+    "organic": {
+      "en": ["Reduce humidity: water in the morning only.", "Wider spacing in the next planting."],
+      "hi": ["नमी कम करें: केवल सुबह पानी दें।", "अगली बुवाई में ज़्यादा दूरी रखें।"],
+      "or": ["ଆର୍ଦ୍ରତା କମାନ୍ତୁ: କେବଳ ସକାଳେ ପାଣି ଦିଅନ୍ତୁ।", "ପରବର୍ତ୍ତୀ ରୋପଣରେ ଅଧିକ ବ୍ୟବଧାନ ରଖନ୍ତୁ।"]
+    },
+    "chemical": {
+      "en": ["Chlorothalonil 75% WP, 2 g per litre, or Mancozeb 75% WP, 2.5 g per litre, if it keeps spreading."],
+      "hi": ["फैलता रहे तो क्लोरोथालोनिल 75% WP, 2 ग्राम प्रति लीटर, या मैंकोज़ेब 75% WP, 2.5 ग्राम प्रति लीटर।"],
+      "or": ["ବ୍ୟାପୁଥିଲେ କ୍ଲୋରୋଥାଲୋନିଲ 75% WP, 2 ଗ୍ରାମ ପ୍ରତି ଲିଟର, କିମ୍ବା ମାଙ୍କୋଜେବ 75% WP, 2.5 ଗ୍ରାମ ପ୍ରତି ଲିଟର।"]
+    },
+    "prevention": {
+      "en": ["Ventilate polyhouses and nets.", "Remove crop debris after harvest."],
+      "hi": ["पॉलीहाउस और नेट हाउस में हवा का रास्ता रखें।", "कटाई के बाद फ़सल अवशेष हटाएँ।"],
+      "or": ["ପଲିହାଉସ ଓ ନେଟରେ ପବନ ଚଳାଚଳ ରଖନ୍ତୁ।", "ଅମଳ ପରେ ଫସଲ ଅବଶେଷ ହଟାନ୍ତୁ।"]
+    }
+  },
+  "septoria_leaf_spot": {
+    "name": {"en": "Septoria leaf spot", "hi": "सेप्टोरिया पत्ती धब्बा", "or": "ସେପ୍ଟୋରିଆ ପତ୍ର ଦାଗ"},
+    "about": {
+      "en": "Many small round spots with grey centres and dark edges, starting on lower leaves. Leaves yellow and fall.",
+      "hi": "निचली पत्तियों से शुरू होकर स्लेटी बीच और गहरे किनारे वाले कई छोटे गोल धब्बे। पत्तियाँ पीली होकर गिरती हैं।",
+      "or": "ତଳ ପତ୍ରରୁ ଆରମ୍ଭ ହୋଇ ଧୂସର ମଝି ଓ ଗାଢ଼ ଧାର ଥିବା ଅନେକ ଛୋଟ ଗୋଲ ଦାଗ। ପତ୍ର ହଳଦିଆ ହୋଇ ଝଡ଼େ।"
+    },
+    "do_now": {
+      "en": ["Remove spotted lower leaves.", "Keep leaves dry; water at the base."],
+      "hi": ["धब्बे वाली निचली पत्तियाँ हटाएँ।", "पत्तियाँ सूखी रखें; जड़ के पास पानी दें।"],
+      "or": ["ଦାଗ ଥିବା ତଳ ପତ୍ର ହଟାନ୍ତୁ।", "ପତ୍ର ଶୁଖିଲା ରଖନ୍ତୁ; ମୂଳରେ ପାଣି ଦିଅନ୍ତୁ।"]
+    },
+    "organic": {
+      "en": ["Mulch with straw to stop soil splash.", "Neem oil 3-5 ml per litre as protection."],
+      "hi": ["मिट्टी के छींटे रोकने के लिए पुआल की मल्चिंग करें।", "बचाव के लिए नीम तेल 3-5 मिली प्रति लीटर।"],
+      "or": ["ମାଟି ଛିଟା ରୋକିବାକୁ ନଡ଼ା ମଲଚିଂ କରନ୍ତୁ।", "ସୁରକ୍ଷା ପାଇଁ ନିମ୍ବ ତେଲ 3-5 ମିଲି ପ୍ରତି ଲିଟର।"]
+    },
+    "chemical": {
+      "en": ["Mancozeb 75% WP, 2-2.5 g per litre, or Chlorothalonil 75% WP, 2 g per litre, every 10-14 days."],
+      "hi": ["मैंकोज़ेब 75% WP, 2-2.5 ग्राम प्रति लीटर, या क्लोरोथालोनिल 75% WP, 2 ग्राम प्रति लीटर, हर 10-14 दिन पर।"],
+      "or": ["ମାଙ୍କୋଜେବ 75% WP, 2-2.5 ଗ୍ରାମ ପ୍ରତି ଲିଟର, କିମ୍ବା କ୍ଲୋରୋଥାଲୋନିଲ 75% WP, 2 ଗ୍ରାମ ପ୍ରତି ଲିଟର, ପ୍ରତି 10-14 ଦିନରେ।"]
+    },
+    "prevention": {
+      "en": ["Rotate crops and remove weeds of the tomato family.", "Clean tools and stakes between seasons."],
+      "hi": ["फ़सल चक्र अपनाएँ और टमाटर परिवार के खरपतवार हटाएँ।", "मौसमों के बीच औज़ार और डंडे साफ़ करें।"],
+      "or": ["ଫସଲ ଚକ୍ର କରନ୍ତୁ ଓ ଟମାଟୋ ପରିବାରର ଘାସ ହଟାନ୍ତୁ।", "ଋତୁ ମଧ୍ୟରେ ଯନ୍ତ୍ରପାତି ଓ ଖୁଣ୍ଟି ସଫା କରନ୍ତୁ।"]
+    }
+  },
+  "yellow_leaf_curl_virus": {
+    "name": {"en": "Yellow leaf curl virus", "hi": "पीला पत्ती मरोड़ विषाणु", "or": "ହଳଦିଆ ପତ୍ର କୁଞ୍ଚନ ଭୂତାଣୁ"},
+    "about": {
+      "en": "Leaves curl upward, stay small and turn yellow at the edges; plants are stunted. Spread by whiteflies. There is no cure for infected plants.",
+      "hi": "पत्तियाँ ऊपर की ओर मुड़ती हैं, छोटी रहती हैं और किनारों से पीली होती हैं; पौधे बौने रह जाते हैं। सफ़ेद मक्खी से फैलता है। संक्रमित पौधे का इलाज नहीं है।",
+      "or": "ପତ୍ର ଉପରକୁ କୁଞ୍ଚିଯାଏ, ଛୋଟ ରହେ ଓ ଧାରରୁ ହଳଦିଆ ହୁଏ; ଗଛ ବାଙ୍ଗର ରହେ। ଧଳା ମାଛିରୁ ବ୍ୟାପେ। ସଂକ୍ରମିତ ଗଛର ଚିକିତ୍ସା ନାହିଁ।"
+    },
+    "do_now": {
+      "en": ["Pull out and destroy infected plants early to protect the rest.", "Put up yellow sticky traps (about 10-15 per acre) to catch whiteflies."],
+      "hi": ["बाकी पौधों को बचाने के लिए संक्रमित पौधे जल्दी उखाड़कर नष्ट करें।", "सफ़ेद मक्खी पकड़ने के लिए पीले चिपचिपे ट्रैप लगाएँ (लगभग 10-15 प्रति एकड़)।"],
+      "or": ["ବାକି ଗଛକୁ ବଞ୍ଚାଇବାକୁ ସଂକ୍ରମିତ ଗଛ ଶୀଘ୍ର ଉପାଡ଼ି ନଷ୍ଟ କରନ୍ତୁ।", "ଧଳା ମାଛି ଧରିବାକୁ ହଳଦିଆ ଅଠାଳିଆ ଫାନ୍ଦ ଲଗାନ୍ତୁ (ପ୍ରାୟ 10-15 ପ୍ରତି ଏକର)।"]
+    },
+    "organic": {
+      "en": ["Neem oil 5 ml per litre against whiteflies.", "Raise seedlings under insect-proof net."],
+      "hi": ["सफ़ेद मक्खी के लिए नीम तेल 5 मिली प्रति लीटर।", "पौध कीट-रोधी जाली के नीचे तैयार करें।"],
+      "or": ["ଧଳା ମାଛି ପାଇଁ ନିମ୍ବ ତେଲ 5 ମିଲି ପ୍ରତି ଲିଟର।", "କୀଟରୋଧୀ ଜାଲି ତଳେ ଚାରା ତିଆରି କରନ୍ତୁ।"]
+    },
+    "chemical": {
+      "en": ["Only for heavy whitefly: Thiamethoxam 25% WG, about 0.3 g per litre, or Imidacloprid 17.8% SL, about 0.3 ml per litre. Do not repeat the same chemical back to back."],
+      "hi": ["केवल ज़्यादा सफ़ेद मक्खी होने पर: थायमेथोक्साम 25% WG, लगभग 0.3 ग्राम प्रति लीटर, या इमिडाक्लोप्रिड 17.8% SL, लगभग 0.3 मिली प्रति लीटर। एक ही दवा लगातार न दोहराएँ।"],
+      "or": ["କେବଳ ଅଧିକ ଧଳା ମାଛି ଥିଲେ: ଥାୟାମେଥୋକ୍ସାମ 25% WG, ପ୍ରାୟ 0.3 ଗ୍ରାମ ପ୍ରତି ଲିଟର, କିମ୍ବା ଇମିଡାକ୍ଲୋପ୍ରିଡ 17.8% SL, ପ୍ରାୟ 0.3 ମିଲି ପ୍ରତି ଲିଟର। ସମାନ ଔଷଧ ଲଗାତାର ଦିଅନ୍ତୁ ନାହିଁ।"]
+    },
+    "prevention": {
+      "en": ["Grow tolerant varieties recommended by your KVK.", "Remove weeds that host whiteflies around the field."],
+      "hi": ["KVK द्वारा सुझाई गई सहनशील किस्में लगाएँ।", "खेत के आसपास सफ़ेद मक्खी वाले खरपतवार हटाएँ।"],
+      "or": ["KVK ପରାମର୍ଶିତ ସହନଶୀଳ କିସମ ଲଗାନ୍ତୁ।", "କ୍ଷେତ ଚାରିପାଖରେ ଧଳା ମାଛି ରହୁଥିବା ଘାସ ହଟାନ୍ତୁ।"]
+    }
+  },
+  "mosaic_virus": {
+    "name": {"en": "Mosaic virus", "hi": "मोज़ेक विषाणु", "or": "ମୋଜାଇକ ଭୂତାଣୁ"},
+    "about": {
+      "en": "Light and dark green mottled patches, sometimes curled or fern-like leaves. Spreads by touch, tools and seed. No spray cures it.",
+      "hi": "हल्के और गहरे हरे चितकबरे धब्बे, कभी-कभी मुड़ी या पतली पत्तियाँ। छूने, औज़ारों और बीज से फैलता है। कोई छिड़काव इसे ठीक नहीं करता।",
+      "or": "ଫିକା ଓ ଗାଢ଼ ସବୁଜ ଚିତ୍ରିତ ଦାଗ, ବେଳେବେଳେ କୁଞ୍ଚିତ ବା ସରୁ ପତ୍ର। ଛୁଇଁବା, ଯନ୍ତ୍ରପାତି ଓ ମଞ୍ଜିରୁ ବ୍ୟାପେ। କୌଣସି ସିଞ୍ଚନ ଏହାକୁ ଭଲ କରେ ନାହିଁ।"
+    },
+    "do_now": {
+      "en": ["Remove infected plants and keep them out of the field.", "Wash hands with soap before touching healthy plants; do not smoke or chew tobacco in the field."],
+      "hi": ["संक्रमित पौधे हटाकर खेत से बाहर करें।", "स्वस्थ पौधों को छूने से पहले साबुन से हाथ धोएँ; खेत में तंबाकू न खाएँ, न पिएँ।"],
+      "or": ["ସଂକ୍ରମିତ ଗଛ ହଟାଇ କ୍ଷେତ ବାହାରକୁ ନିଅନ୍ତୁ।", "ସୁସ୍ଥ ଗଛ ଛୁଇଁବା ପୂର୍ବରୁ ସାବୁନରେ ହାତ ଧୁଅନ୍ତୁ; କ୍ଷେତରେ ତମାଖୁ ଖାଆନ୍ତୁ ବା ପିଅନ୍ତୁ ନାହିଁ।"]
+    },
+    "organic": {
+      "en": ["Disinfect tools (for example in milk or bleach solution) between plants.", "Use certified seed."],
+      "hi": ["पौधों के बीच औज़ार कीटाणुरहित करें (जैसे दूध या ब्लीच घोल में)।", "प्रमाणित बीज का उपयोग करें।"],
+      "or": ["ଗଛ ମଧ୍ୟରେ ଯନ୍ତ୍ରପାତି ଜୀବାଣୁମୁକ୍ତ କରନ୍ତୁ (ଯେପରି କ୍ଷୀର ବା ବ୍ଲିଚ ଦ୍ରବଣରେ)।", "ପ୍ରମାଣିତ ମଞ୍ଜି ବ୍ୟବହାର କରନ୍ତୁ।"]
+    },
+    "chemical": {
+      "en": ["No chemical cures mosaic. Control aphids only if many are present, as advised by your KVK."],
+      "hi": ["मोज़ेक का कोई रासायनिक इलाज नहीं है। माहू ज़्यादा हों तो ही KVK की सलाह से नियंत्रण करें।"],
+      "or": ["ମୋଜାଇକର କୌଣସି ରାସାୟନିକ ଚିକିତ୍ସା ନାହିଁ। ଜାବପୋକ ଅଧିକ ଥିଲେ ହିଁ KVK ପରାମର୍ଶରେ ନିୟନ୍ତ୍ରଣ କରନ୍ତୁ।"]
+    },
+    "prevention": {
+      "en": ["Resistant varieties and clean nursery.", "Do not save seed from infected plants."],
+      "hi": ["प्रतिरोधी किस्में और साफ़ नर्सरी।", "संक्रमित पौधों से बीज न बचाएँ।"],
+      "or": ["ପ୍ରତିରୋଧୀ କିସମ ଓ ସଫା ନର୍ସରୀ।", "ସଂକ୍ରମିତ ଗଛରୁ ମଞ୍ଜି ସାଇତନ୍ତୁ ନାହିଁ।"]
+    }
+  },
+  "healthy": {
+    "name": {"en": "Healthy", "hi": "स्वस्थ", "or": "ସୁସ୍ଥ"},
+    "about": {
+      "en": "No disease signs found on this leaf.",
+      "hi": "इस पत्ती पर रोग के कोई लक्षण नहीं मिले।",
+      "or": "ଏହି ପତ୍ରରେ ରୋଗର କୌଣସି ଲକ୍ଷଣ ମିଳିଲା ନାହିଁ।"
+    },
+    "do_now": {
+      "en": ["No spray needed.", "Check a few more plants, especially lower leaves, once a week."],
+      "hi": ["किसी छिड़काव की ज़रूरत नहीं।", "हफ़्ते में एक बार कुछ और पौधों, खासकर निचली पत्तियों की जाँच करें।"],
+      "or": ["କୌଣସି ସିଞ୍ଚନ ଦରକାର ନାହିଁ।", "ସପ୍ତାହରେ ଥରେ ଆଉ କିଛି ଗଛ, ବିଶେଷକରି ତଳ ପତ୍ର ଯାଞ୍ଚ କରନ୍ତୁ।"]
+    },
+    "organic": {"en": [], "hi": [], "or": []},
+    "chemical": {"en": [], "hi": [], "or": []},
+    "prevention": {
+      "en": ["Keep good spacing, drainage and balanced fertiliser."],
+      "hi": ["उचित दूरी, जल निकासी और संतुलित खाद बनाए रखें।"],
+      "or": ["ଉଚିତ ବ୍ୟବଧାନ, ପାଣି ନିଷ୍କାସନ ଓ ସନ୍ତୁଳିତ ସାର ବଜାୟ ରଖନ୍ତୁ।"]
+    }
+  }
+}

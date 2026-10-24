@@ -1,0 +1,15 @@
+# Core (stages 1-8). Install PyTorch first with the right CUDA build from https://pytorch.org
+torch>=2.2
+torchvision>=0.17
+timm>=1.0
+numpy>=1.24
+pillow>=10.0
+scipy>=1.11
+pandas>=2.0
+matplotlib>=3.8
+imagehash>=4.3
+# Export for the phone and latency (Section 5.5)
+onnx>=1.16
+onnxruntime>=1.18
+# Tests
+pytest>=8.0
