@@ -6,6 +6,7 @@ that prepare_data.py uses for the calibration/test split stays the same as on Li
 
 Usage: python scripts/checkout_plantdoc_windows.py PlantDoc-Dataset
 """
+import hashlib
 import subprocess
 import sys
 from pathlib import Path
@@ -19,8 +20,10 @@ for n in wanted:
     out = repo / n.replace("?", "@")
     if any(c in out.name for c in bad):
         raise SystemExit(f"cannot write {n}: still has an invalid character")
-    # \\?\ prefix lifts Windows' 260-character path limit (a few PlantDoc names are very long)
-    out = Path("\\\\?\\" + str(out.resolve()))
+    # Windows cannot open paths over 260 characters, so a very long name keeps its first 60 characters
+    # (the sort order stays almost the same) plus a short hash of the original name.
+    if len(str(out.resolve())) > 240:
+        out = out.with_name(out.stem[:60] + "~" + hashlib.md5(n.encode()).hexdigest()[:8] + out.suffix)
     if out.exists():
         continue
     out.parent.mkdir(parents=True, exist_ok=True)
