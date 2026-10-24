@@ -109,4 +109,6 @@ def load_condition(full_path, rel_key, deg, level, copy):
     so the same copy is produced on any machine."""
     with Image.open(full_path) as im:
         im = im.convert("RGB")
-        return apply(im, deg, level, key=f"{rel_key}|c{copy}") if deg != "none" else im.copy()
+        # forward slashes, so a Windows manifest (backslashes) seeds the same copy as a Linux one
+        key = f"{str(rel_key).replace(chr(92), '/')}|c{copy}"
+        return apply(im, deg, level, key=key) if deg != "none" else im.copy()
