@@ -68,14 +68,26 @@ def main():
            "PYTHON": sys.executable}
     sh("bash", "run_all.sh", env=env)
 
-    step("Push results (no images)")
+    step("Save results (no images): zip, Drive copy, browser download")
     token = os.environ.get("GITHUB_TOKEN")
     keep = [d for d in ("runs", "manifests", "artifacts", "results", "export", "dataset_versions.txt")
             if pathlib.Path(d).exists()]
+    sh("rm", "-f", "tomato_results.zip")
+    sh("zip", "-qr", "tomato_results.zip", *keep, "-x", *[f"*{e}" for e in IMG_EXT])
+    print("wrote", root / "tomato_results.zip")
+    if drive.exists():
+        sh("cp", "tomato_results.zip", str(drive / "tomato_results.zip"))
+        print("copied to Google Drive: tomato_results.zip")
+    try:  # works only when this script runs inside the notebook: use `%run scripts/colab_run.py`, not `!python`
+        from google.colab import files
+        files.download(str(root / "tomato_results.zip"))
+        print("browser download started")
+    except Exception as e:
+        print(f"auto-download skipped ({type(e).__name__}); get the zip from the Files pane")
     if not token:
-        sh("zip", "-qr", "tomato_results.zip", *keep, "-x", *[f"*{e}" for e in IMG_EXT])
-        print("No GITHUB_TOKEN: wrote tomato_results.zip instead (download it from the Files pane).")
+        print("No GITHUB_TOKEN: not pushing.")
         return
+    step("Push results to Git (no images)")
     origin = out("git", "remote", "get-url", "origin").strip()
     sh("git", "config", "user.name", "colab-trainer")
     sh("git", "config", "user.email", "colab-trainer@users.noreply.github.com")
