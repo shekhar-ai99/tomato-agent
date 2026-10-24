@@ -42,7 +42,7 @@ The thresholds are chosen by grid search to minimise the expected cost on photos
 
 ## 4.2 Models and training (PILOT facts to confirm after the full study)
 
-AdamW, cosine schedule, 224 x 224 input, ImageNet initialisation, early stopping on validation loss with patience 5 and at most 30 epochs. The pilot EfficientNet-B0 stopped at epoch 20 (best epoch 15) and took about 65 s per epoch on a free Colab T4 GPU. Five seeds per backbone in the full study.
+AdamW (weight decay 0.01) with one warm-up epoch followed by cosine decay, a per-backbone learning rate (see `DEFAULT_LR` in `scripts/train_diagnosis.py`), square-root class weights in the loss, 224 x 224 input, ImageNet initialisation, and augmentation by random resized crop (scale 0.5 to 1), horizontal flip and colour jitter (0.2 on brightness, contrast and saturation). Early stopping on validation loss with patience 5 and at most 30 epochs. The pilot EfficientNet-B0 stopped at epoch 20 (best epoch 15) and took about 65 s per epoch on a free Colab T4 GPU. Five seeds per backbone in the full study.
 
 ## 4.3 Degraded capture conditions (replace the [TBD]s; FINAL)
 

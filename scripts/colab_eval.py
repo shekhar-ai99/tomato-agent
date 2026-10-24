@@ -42,7 +42,7 @@ def main():
     ap.add_argument("--runs", default="runs")
     ap.add_argument("--results", default="results")
     ap.add_argument("--artifacts", default="artifacts")
-    ap.add_argument("--bootstrap", default="500")
+    ap.add_argument("--bootstrap", default="1000")
     ap.add_argument("--no-zip", action="store_true")
     args = ap.parse_args()
     root = pathlib.Path(__file__).resolve().parents[1]

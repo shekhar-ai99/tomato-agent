@@ -209,7 +209,7 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--runs", default="runs")
     ap.add_argument("--results", default="results")
-    ap.add_argument("--bootstrap", type=int, default=500, help="bootstrap resamples per run (0 = no intervals)")
+    ap.add_argument("--bootstrap", type=int, default=1000, help="bootstrap resamples per run (0 = no intervals)")
     ap.add_argument("--no-figs", action="store_true")
     args = ap.parse_args()
 
